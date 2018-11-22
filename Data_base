@@ -1,0 +1,44 @@
+PRAGMA foreign_keys=on;  /*поддержка вн. ключа в sqlite */
+
+CREATE TABLE users (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+first_name TEXT NOT NULL,
+last_name TEXT NOT NULL,
+phone INTEGER
+);
+
+INSERT INTO users(first_name, last_name, phone)
+VALUES ('Petr','Petrovich','+79372428473');
+INSERT INTO users(first_name, last_name, phone)
+VALUES ('Vasya','Vasilich','+79352728672');
+INSERT INTO users(first_name, last_name, phone)
+VALUES ('Nikola','Nikolaev','+79312425051');
+
+
+CREATE TABLE cities (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name_citi TEXT,
+region INTEGER NOT NULL
+);
+
+INSERT INTO cities(name_citi,region)
+VALUES ('Ulyanovsk','73');
+INSERT INTO cities(name_citi,region)
+VALUES ('Samara','63');
+INSERT INTO cities(name_citi,region)
+VALUES ('Kazan','16');
+
+
+CREATE TABLE journal (
+users_id INTEGER NOT NULL,
+citi_id INTEGER NOT NULL,
+FOREIGN KEY (users_id) REFERENCES users(id)
+FOREIGN KEY (citi_id) REFERENCES cities(id)
+);
+
+INSERT INTO journal(users_id,citi_id)
+VALUES ('2','2');
+INSERT INTO journal(users_id,citi_id)
+VALUES ('3','3');
+INSERT INTO journal(users_id,citi_id)
+VALUES ('1','1');
